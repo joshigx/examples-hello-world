@@ -1,5 +1,19 @@
-import { serveFile } from "jsr:@std/http/file-server";
+import { Hono } from "hono";
+import type { Context } from "hono";
+import { serveStatic } from 'hono/deno';
 
-Deno.serve((req: Request) => {
-    return serveFile(req, "./index.html");
+
+const app = new Hono();
+
+
+app.use('/static/*', serveStatic({ root: './'}));
+
+
+
+app.get("/", (c: Context) => {
+  return c.text("Hello World! WIe geht es");
 });
+
+
+
+Deno.serve(app.fetch);
