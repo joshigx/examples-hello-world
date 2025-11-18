@@ -11,7 +11,7 @@ app.use('/static/*', serveStatic({ root: './'}));
 
 
 app.get("/", (c: Context) => {
-  return c.text("Hello World! WIe geht es");
+  return c.text("Hello World! Wie geht es");
 });
 
 
